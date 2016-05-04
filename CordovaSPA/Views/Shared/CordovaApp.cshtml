@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>MobileApp</title>
+</head>
+<body>
+    @RenderBody()
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper brown lighten-2">
+                <a href="/" class="brand-logo center"><img src="images/logo.png" class="logo" alt=""></a>
+                <a href="javascript:app.loadContent('/pages/home/about.html')" class="left"><i class="fa fa-arrow-left" style="font-size:25px;"></i></a>
+                <a href="#" data-activates="mobile-demo" style="margin-right:15px;" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="javascript:app.loadContent('/pages/home/about.html')">Hakkımızda</a></li>
+                    <li><a href="javascript:app.loadContent('/pages/products/products.html')">Ürünler</a></li>
+                    <li><a href="javascript:app.loadContent('/pages/product-categories/categories.html')">Kategoriler</a></li>
+                    <li><a href="javascript:app.loadContent('/pages/home/login.html')">Giriş Yap</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="body">
+
+    </div>
+    @*<script type="text/javascript" src="cordova.js"></script>*@
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    @*@Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")*@
+    <script src="scripts/materialize.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.button-collapse').sideNav({
+                menuWidth: 190, // Default is 240
+                edge: 'right', // Choose the horizontal origin
+                closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            });
+         
+            $('select').material_select();
+        });
+    </script>
+
+</body>
+</html>

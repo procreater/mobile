@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>MobileApp</title>
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper brown lighten-2">
+                <a href="/" class="brand-logo center"><img src="images/logo.png" class="logo" alt=""></a>
+                <a href="index.html" class="left"><i class="fa fa-arrow-left" style="font-size:25px;"></i></a>
+                <a href="#" data-activates="mobile-demo" style="margin-right:15px;" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="index.html">Hakkımızda</a></li>
+                    <li><a href="#">Ürünler</a></li>
+                    <li><a href="product-category/category.html">Kategoriler</a></li>
+                    <li><a href="login.html">Giriş Yap</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <p class="input-field">
+        <select id="category">
+
+        </select>
+    </p>
+    
+    <div class="row">
+        <div class="col s2 right-align">&nbsp;</div>
+        <div class="col s7 center-align"><h3>Ürünler</h3></div>
+        <div class="col s3 right-align"><a href="createProduct.html" style="margin-top:13px;" class="btn-floating btn-large waves-effect waves-light brown lighten-2"><i class="material-icons">add</i></a></div>
+    </div>
+    <table class="collection" id="content">
+       
+    </table>
+
+        <div id="menu" class="modal bottom-sheet">
+            <div class="modal-content" style="">
+                <div class="collection">
+                    <a class="collection-item" href="editProduct.html"><i class="material-icons">mode_edit</i> Düzenle</a>
+                    <a class="collection-item modal-trigger" href="#delete"><i class="material-icons">delete</i> Sil</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="delete" class="modal">
+            <div class="modal-content">
+                <p class="center-align">Silme işlemini onaylıyor musunuz?</p>
+                <p class="center-align"><a onclick="$('#delete').closeModal();" href="#" class="btn brown lighten-2">Evet</a> <a onclick="$('#delete').closeModal();" href="#" class="btn brown lighten-2">Hayır</a></p>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <script type="text/javascript" src="scripts/index.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+        <script src="scripts/materialize.min.js"></script>
+        <script src="scripts/app.js"></script>
+        <script>
+
+            $(document).ready(function () {
+                products.query.getAll(products.view.createAdminListView("content"));
+                products.query.getByCategories(products.view.createAdminCategoryList("category"));
+                //createLeanModal('.modal-trigger');
+                $('.button-collapse').sideNav({
+                    menuWidth: 190, // Default is 240
+                    edge: 'right', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                });
+                $('select').material_select();
+            });
+        </script>
+</body>
+</html>

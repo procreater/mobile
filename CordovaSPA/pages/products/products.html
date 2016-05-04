@@ -1,0 +1,68 @@
+﻿<div class="row">
+    <div class="col s2 right-align">&nbsp;</div>
+    <div class="col s7 center-align"><h3>Ürünler</h3></div>
+    <div class="col s3 right-align"><a href="javascript:app.loadContent('/pages/products/createProduct.html')" style="margin-top:13px;" class="btn-floating btn-large waves-effect waves-light brown lighten-2"><i class="material-icons">add</i></a></div>
+</div>
+<p class="input-field">
+    <select id="categoryList" multiple>
+    </select>
+    <label>Kategori</label>
+</p>
+<table>
+    <tbody class="collection" id="content"></tbody>
+</table>
+
+<div id="menu" class="modal bottom-sheet">
+    <div class="modal-content" style="">
+        <div class="collection">
+            <a onclick="$('#menu').closeModal();" class="collection-item" href="javascript:app.loadContent('/pages/products/editProduct.html')"><i class="material-icons">mode_edit</i> Düzenle</a>
+            <a class="collection-item modal-trigger" href="#delete"><i class="material-icons">delete</i> Sil</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="delete" class="modal">
+    <div class="modal-content">
+        <p class="center-align">Silme işlemini onaylıyor musunuz?</p>
+        <p class="center-align"><a onclick="app.query('post', '/api/Products/Delete/'+ app.selectedItemId); $('#delete').closeModal();" href="#" class="btn brown lighten-2">Evet</a> <a onclick="$('#delete').closeModal();" href="#" class="btn brown lighten-2">Hayır</a></p>
+    </div>
+</div>
+
+<table id="productRowTemplate" style="display:none">
+    <tr class='collection-item' style='font-size:20px!important'>
+        <td><a href="javascript:app.loadContent('/pages/products/productDetails.html');"><img class='circle' src='content/products/images/yuna.jpg'></a></td>
+        <td class='center-align'><a href="javascript:app.loadContent('/pages/products/productDetails.html');">{{name}}</a></td>
+        <td class='right-align'>
+            <a class="modal-trigger btn-floating btn-large brown lighten-2 " onclick="app.selectedItemId='{{id}}'" href="#menu"><i style="color:#fff!important" class="material-icons">mode_edit</i></a>
+        </td>
+    </tr>
+</table>
+
+<script>
+    $(document).ready(function () {
+
+        var createRow = function (product, templateId) {
+            //return document.getElementById('productRowTemplate').innerHTML.replace(/^start.*\W/, function (match) { alert(match); return match; });
+            return document.getElementById('productRowTemplate').innerHTML.replace('{{id}}', product.id).replace('{{name}}', product.name);
+        }
+
+        //var createRow = function (product) {
+        //    return "<tr class='collection-item' style='font-size:20px!important'><td><a href=\"javascript:app.loadContent('/pages/products/productDetails.html')\";><img class='circle' src='content/products/images/yuna.jpg'></a></td><td class='center-align'><a href=\"javascript:app.loadContent('/pages/products/productDetails.html')\";>" + product.name + "</a></td> <td class='right-align'>" +
+        //        '<a class="modal-trigger btn-floating btn-large brown lighten-2 " onclick="products.screen.selectedProductId=' + product.id + '" href="#menu"><i style="color:#fff!important" class="material-icons">mode_edit</i></a>'
+        //       + "</td></tr>";
+        //}
+
+        var finalizer = function (elementId) {
+            $('.modal-trigger').leanModal();
+        }
+        var createOption = function (category) {
+            return "<option value="+category.id +">"+ category.name +"</option>";
+        }
+        products.query.getAll(app.createTemplate(createRow, "content", finalizer));
+
+        var selectFinalizer = function () { $('select').material_select(); }
+
+        categories.query.getAll(app.createTemplate(createOption, "categoryList", selectFinalizer));
+    });
+</script>

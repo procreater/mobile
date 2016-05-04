@@ -1,0 +1,50 @@
+﻿<div class="row">
+    <div class="col s2 right-align">&nbsp;</div>
+    <div class="col s7 center-align"><h3>Ürün Özellikleri</h3></div>
+    <div class="col s3 right-align" style="margin-top:13px;">
+        <a class="modal-trigger btn-floating btn-large waves-effect waves-light brown lighten-2" href="#operation"><i style="color:#fff!important" class="material-icons">mode_edit</i></a>
+    </div>
+</div>
+<table class="collection" style="font-size:20px">
+    <tr class="collection-item">
+        <td><img class='circle' src='content/products/images/yuna.jpg'> <span style="top: -20px; position: relative; margin-left:70px">napoliten</span></td>
+        <td></td>
+    </tr>
+    <tr class="collection-item">
+        <td>Sınıf Numarası</td>
+        <td><b>2240</b></td>
+    </tr>
+    <tr class="collection-item">
+        <td>Net Ağırlık(gr)</td>
+        <td><b>400</b></td>
+    </tr>
+    <tr class="collection-item">
+        <td>Kutu İçi Ürün Sayısı</td>
+        <td><b>12</b></td>
+    </tr>
+    <tr class="collection-item">
+        <td>Paket İçi Ürün Sayısı</td>
+        <td><b>24</b></td>
+    </tr>
+</table>
+
+<div id="operation" class="modal bottom-sheet">
+    <div class="modal-content" style="">
+        <div class="collection">
+            <a class="collection-item waves-effect waves-default" href="javascript:app.loadContent('/pages/products/editProduct.html');">Düzenle <i class="material-icons right">mode_edit</i></a>
+            <a class="collection-item waves-effect waves-default modal-trigger" href="#delete">Sil <i class="material-icons right">delete</i></a>
+        </div>
+    </div>
+</div>
+
+
+<div id="delete" class="modal">
+    <div class="modal-content">
+        <p class="center-align">Silme işlemini onaylıyor musunuz?</p>
+        <p class="center-align"><a onclick="$('#menu').closeModal();" href="#" class="btn waves-effect waves-light brown lighten-2">Evet</a> <a onclick="$('#menu').closeModal();" href="#" class="btn waves-effect waves-light brown lighten-2">Hayır</a></p>
+    </div>
+</div>
+
+<script>
+    $('.modal-trigger').leanModal();
+</script>

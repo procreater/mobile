@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <title>Kategori</title>
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper brown lighten-2">
+                <a href="/" class="brand-logo center"><img src="../images/logo.png" class="logo" alt=""></a>
+                <a href="category.html" class="left"><i class="fa fa-arrow-left" style="font-size:25px;"></i></a>
+                <a href="#" data-activates="mobile-demo" style="margin-right:15px;" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="../index.html">Hakkımızda</a></li>
+                    <li><a href="../products.html">Ürünler</a></li>
+                    <li><a href="#">Kategoriler</a></li>
+                    <li><a href="../login.html">Giriş Yap</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="row">
+        <div class="col s2 right-align">&nbsp;</div>
+        <div class="col s7 center-align"><h3>Kategori Ekle</h3></div>
+        <div class="col s3 right-align"></div>
+    </div>
+   
+    <section class="container">
+        <form action="" enctype="multipart/form-data">
+            <table class="input-field">
+                <tr>
+                    <td>
+                        <input value="Eat" id="name" type="text" class="validate">
+                        <label class="active" for="name">Kategori İsmi</label>
+                    </td>
+                </tr>
+            <tr>
+                <td class="file-field">
+                    <div class="btn brown lighten-2 waves-effect waves-light">
+                        <span>Resim</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input name="file" class="file-path validate" type="text">
+                    </div>
+                </td>
+            </tr>
+            </table> <br>
+            <p class="center"><input type="submit" value="Güncelle" class="btn brown lighten-2 waves-effect waves-light"></p>
+        </form><br />
+    </section>
+
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="../scripts/index.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="../scripts/materialize.min.js"></script>
+    <script src="../scripts/app.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            products.query.getAll(products.view.createAdminListView("content"));
+            //createLeanModal('.modal-trigger');
+            $('.modal-trigger').leanModal();
+            $('.button-collapse').sideNav({
+                menuWidth: 190, // Default is 240
+                edge: 'right', // Choose the horizontal origin
+                closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            });
+        });
+    </script>
+</body>
+</html>
