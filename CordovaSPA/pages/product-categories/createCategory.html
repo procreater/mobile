@@ -19,9 +19,8 @@
 <script>
     $(document).ready(function () {
         $('.post').click(function () {
-            alert(tik);
             var value = {
-                CategoryName: $("#name").val()
+                Name: $("#name").val()
             };
             app.query("post", "/api/ProductCategories/CreatePostProductCategory", JSON.stringify(value), function (data, status) { alert(status); });
         });

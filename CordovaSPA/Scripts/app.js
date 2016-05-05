@@ -147,6 +147,9 @@ categories = {
     query: {
         getAll: function (successFunc) {
             app.query("get", "/api/productcategories/getAll", null, successFunc);
+        },
+        getById: function(categoryId, successFunc) {
+            app.query("get", "/api/ProductCategories/GetById/"+ categoryId, null, successFunc)
         }
     }
 }

@@ -41,6 +41,18 @@ namespace CordovaSPA.Controllers
             return db.ProductCategories;
         }
 
+        // GET: api/ProductCategories/GetById
+        [ResponseType(typeof(ProductCategory))]
+        public IHttpActionResult GetById(int id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            ProductCategory category = db.ProductCategories.Include(p => p.Products).FirstOrDefault(c => c.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
+        }
 
         // GET: api/ProductCategories/5
         [ResponseType(typeof(ProductCategory))]
@@ -55,9 +67,9 @@ namespace CordovaSPA.Controllers
             return Ok(productCategory);
         }
 
-        // PUT: api/ProductCategories/5
+        // PUT: api/ProductCategories/Update
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProductCategory(int id, ProductCategory productCategory)
+        public IHttpActionResult Update(int id, ProductCategory productCategory)
         {
             if (!ModelState.IsValid)
             {
@@ -105,9 +117,9 @@ namespace CordovaSPA.Controllers
             return CreatedAtRoute("DefaultApi", new { id = productCategory.Id }, productCategory);
         }
 
-        // DELETE: api/ProductCategories/5
+        // DELETE: api/ProductCategories/Delete
         [ResponseType(typeof(ProductCategory))]
-        public IHttpActionResult DeleteProductCategory(int id)
+        public IHttpActionResult Delete(int id)
         {
             ProductCategory productCategory = db.ProductCategories.Find(id);
             if (productCategory == null)

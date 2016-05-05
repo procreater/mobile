@@ -9,11 +9,22 @@
         <table class="input-field">
             <tr>
                 <td>
-                    <input value="Eat" id="name" type="text" class="validate">
+                    <input value="{{name}}" id="name" type="text" class="validate">
                     <label class="active" for="name">Kategori İsmi</label>
+                    <input type="hidden" name="id" id="id" value="" />
                 </td>
             </tr>
         </table> <br> <br />
-        <p class="center"><input type="submit" value="Güncelle" class="btn-large brown lighten-2 waves-effect waves-light"></p>
+        <p class="center"><input type="submit" value="Güncelle" class="btn-large brown lighten-2 waves-effect waves-light post"></p>
     </form><br />
 </section>
+<script>
+    var createRow = function (category, templateId) {
+        return document.getElementById('categoryRowTemplate').innerHTML.replace('{{name}}', category.name);
+    }
+    categories.query.getById(app.selectedItemId, function (category) { $('#name').val(category.name);  $('#id').val(category.id) });
+    $(".post").click(function () {
+        app.query("get", "/api/ProductCategories/Update"+ app.selectedItemId, JSON.stringify({ id: $("#id").val(), name: $("#name").val() }), function (data) { alert(JSON.stringify(data)); });
+    });
+    alert(app.selectedItemId);
+</script>

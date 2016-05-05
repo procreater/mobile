@@ -36,11 +36,12 @@
 <script>
         $(document).ready(function () {
             $('.modal-trigger').leanModal();
-            $('select').material_select();
+            var selectFinalizer = function () { $('select').material_select(); }
             var createRow = function (category) {
-                return "<option value='' disabled>Kategori Seç</option>  <option value=" + category.id + ">" + category.name + "</option>";
+                return "<option value=" + category.id + ">" + category.name + "</option>";
             };
-            categories.query.getAll(app.createTemplate(createRow, "CategoryId"));
+
+            categories.query.getAll(app.createTemplate(createRow, "CategoryId", selectFinalizer));
 
             $('.post').click(function () {
                 var values = {

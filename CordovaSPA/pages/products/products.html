@@ -25,7 +25,7 @@
 <div id="delete" class="modal">
     <div class="modal-content">
         <p class="center-align">Silme işlemini onaylıyor musunuz?</p>
-        <p class="center-align"><a onclick="app.query('post', '/api/Products/Delete/'+ app.selectedItemId); $('#delete').closeModal();" href="#" class="btn brown lighten-2">Evet</a> <a onclick="$('#delete').closeModal();" href="#" class="btn brown lighten-2">Hayır</a></p>
+        <p class="center-align"><a onclick="app.query('get', '/api/Products/Delete/'+ app.selectedItemId); $('#delete').closeModal();" href="#" class="btn brown lighten-2">Evet</a> <a onclick="$('#delete').closeModal();" href="#" class="btn brown lighten-2">Hayır</a></p>
     </div>
 </div>
 

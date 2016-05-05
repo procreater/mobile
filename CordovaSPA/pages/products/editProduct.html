@@ -44,7 +44,9 @@
         }
         var finalizer = function (elementId) { $('.modal-trigger').leanModal(); }
         var selectFinalizer = function () { $('select').material_select(); }
+
         products.query.getById(app.selectedItemId, function (product) { $('#name').val(product.name); $('#CategoryId').val(product.categoryId); $('#id').val(product.id) });
+
         $(".post").click(function () {
             app.query("post", "/api/Products/Update", JSON.stringify({id : $("#id").val(), name : $("#name").val(), categoryId : $("#CategoryId").val()}) , function (data) { alert(JSON.stringify(data)); });
         });
@@ -53,5 +55,6 @@
             return "<option disabled>Kategori Seç</option> <option value=" + category.id + ">" + category.name + "</option>";
         };
         categories.query.getAll(app.createTemplate(createRow, "CategoryId", selectFinalizer));
+        alert(app.selectedItemId);
     });
 </script>
