@@ -15,9 +15,6 @@
                 <td>
                     <br>
                     <select id="CategoryId">
-                        <option value="" disabled>Kategori Seç</option>
-                        <option value="1">Eat</option>
-                        <option value="2">Cleaning</option>
                     </select>
                 </td>
             </tr>
@@ -40,12 +37,17 @@
         $(document).ready(function () {
             $('.modal-trigger').leanModal();
             $('select').material_select();
+            var createRow = function (category) {
+                return "<option value='' disabled>Kategori Seç</option>  <option value=" + category.id + ">" + category.name + "</option>";
+            };
+            categories.query.getAll(app.createTemplate(createRow, "CategoryId"));
+
             $('.post').click(function () {
                 var values = {
                     "Name": $("#ProductName").val(),
                     "CategoryId": $("#CategoryId").val()
                 };
-                app.query("post", "/api/Products/Create", JSON.stringify(values), function (data, status) { alert(status); } );
+                app.query("post", "/api/Products/Create", JSON.stringify(values), function (data, status) { alert(status); });
             });
         });
 </script>

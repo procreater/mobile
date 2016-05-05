@@ -90,9 +90,9 @@ namespace CordovaSPA.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ProductCategories
+        // POST: api/CreateProductCategories
         [ResponseType(typeof(ProductCategory))]
-        public IHttpActionResult PostProductCategory(ProductCategory productCategory)
+        public IHttpActionResult CreatePostProductCategory(ProductCategory productCategory)
         {
             if (!ModelState.IsValid)
             {

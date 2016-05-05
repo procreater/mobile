@@ -1,7 +1,7 @@
 ﻿<div class="row">
-    <div class="col s2 right-align"></div>
+    <div class="col s2 right-align">&nbsp;</div>
     <div class="col s7 center-align"><h3>Ürün Düzenle</h3></div>
-    <div class="col s3 right-align"></div>
+    <div class="col s3 right-align">&nbsp;</div>
 </div>
 <section class="container">
 
@@ -16,10 +16,7 @@
             <tr>
                 <td>
                     <select id="CategoryId">
-                        <option value="" disabled>Kategori Seç</option>
-                        <option value="1">Option 1</option>
-                        <option selected value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                        
                     </select>
                 </td>
             </tr>
@@ -51,6 +48,10 @@
         $(".post").click(function () {
             app.query("post", "/api/Products/Update", JSON.stringify({id : $("#id").val(), name : $("#name").val(), categoryId : $("#CategoryId").val()}) , function (data) { alert(JSON.stringify(data)); });
         });
-        $('select').material_select();
+
+        var createRow = function (category) {
+            return "<option disabled>Kategori Seç</option> <option value=" + category.id + ">" + category.name + "</option>";
+        };
+        categories.query.getAll(app.createTemplate(createRow, "CategoryId", selectFinalizer));
     });
 </script>
